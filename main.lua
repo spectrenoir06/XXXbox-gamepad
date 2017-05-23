@@ -1,6 +1,7 @@
+-------------------------------------------------------------------------------
 local adresse = "db:80:75:10:c1:c6" -- peripheral adresse
-
-
+local frequency = 10 -- how many type by seconde send the bluetooth commande
+-------------------------------------------------------------------------------
 
 local power = 0
 local font = nil
@@ -40,7 +41,7 @@ function love.update(dt)
 			power = 0
 		end
 
-		local str = "char-write-req 0x000e "..tohex("Vibrate:"..math.floor(power)..";")
+		local str = "char-write-req 0x000e "..tohex("Vibrate:"..math.floor(power)..";") -- power need to be between 0-20
 		print(str)
 		gatt:write(str.."\n") -- send cmd
 		gatt:flush()
